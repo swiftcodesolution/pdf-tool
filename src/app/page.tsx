@@ -49,9 +49,10 @@ const Home = () => {
         await res.json();
       setFields((prev) => [...prev, extractedFields]);
       setTableData((prev) => [...prev, ...extractedTable]);
-    } catch (err: unknown) {
-      setError(err.message || "Error processing PDF");
-      console.error(err);
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || "Error processing PDF");
+      console.error(error.message);
     }
   }, []);
 
